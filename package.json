@@ -15,7 +15,12 @@
     "release": "changeset version && pnpm install --no-frozen-lockfile && git add -A && git commit -m \"chore(release): version packages\"",
     "publish:packages": "changeset publish",
     "commit": "cz",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "vitest run --coverage",
+    "test:ui": "vitest",
+    "test:watch": "vitest --watch",
+    "test:e2e:install": "playwright install --with-deps",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -90,7 +95,14 @@
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.2.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "@playwright/test": "^1.49.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.6.1",
     "tailwindcss": "^4.1.12",
+    "@vitest/coverage-v8": "^2.1.4",
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.4",
     "typescript": "^5.9.2"
   },
   "lint-staged": {

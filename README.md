@@ -66,6 +66,25 @@ Notlar:
 - Anchor nesting ihlalleri (ör. `<a>` içinde başka bir `<a>`) `ERROR` seviyesindedir (`jsx-a11y/anchor-is-valid`).
 - İlgili ihlaller `pnpm lint` sırasında kırmızı hata olarak raporlanır.
 
+## Testing
+
+- Unit/UI (Vitest + RTL)
+  - Çalıştır: `pnpm test` (coverage: text + html, `coverage/` altında)
+  - İnteraktif UI: `pnpm test:ui` (isteğe bağlı)
+  - Watch: `pnpm test:watch`
+- E2E (Playwright)
+  - Kurulum (ilk sefer): `pnpm test:e2e:install` (tarayıcı indirir)
+  - Uygulamayı başlat: `pnpm dev`
+  - Ayrı terminalde smoke testi: `pnpm test:e2e`
+
+Notlar:
+
+- App Router ile sadece minimal örnek testler eklenmiştir (tam sunucu entegrasyonu yok).
+- Tailwind v4 için test tarafında ekstra konfig gerekmiyor.
+  coverage: pnpm test sonrası coverage/ altında rapor
+  E2E sadece `tests/e2e/*.spec.ts` dosyalarını toplar.
+- Sprint modu: Coverage yalnızca hedef dosyalar için ölçülür (`app/page.tsx`, `app/api/**`). Kapsam ilerledikçe `include` genişletilecektir.
+
 ### Setting Up the Demo Layout
 
 Open `app/(protected)/layout.tsx` and change `Demo1Layout` to any demo, for example, `Demo5Layout` and you will switch entire app layout to the selected demo.
