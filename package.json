@@ -8,7 +8,13 @@
     "start": "next start",
     "build:staging": "cp .env.staging .env.local && next build",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky",
+    "changeset": "changeset",
+    "release": "changeset version && pnpm install --no-frozen-lockfile && git add -A && git commit -m \"chore(release): version packages\"",
+    "publish:packages": "changeset publish",
+    "commit": "cz",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -56,6 +62,13 @@
     "@headless-tree/react": "^1.4.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.10",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/leaflet": "^1.9.20",
     "@types/node": "^24.3.0",
@@ -73,5 +86,18 @@
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix --max-warnings=0"
+    ],
+    "*.{json,md,css,scss,html,mdx,ts,tsx,js,jsx}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
