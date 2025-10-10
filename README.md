@@ -83,6 +83,15 @@ Notlar:
 - Tailwind v4 için test tarafında ekstra konfig gerekmiyor.
   coverage: pnpm test sonrası coverage/ altında rapor
   E2E sadece `tests/e2e/*.spec.ts` dosyalarını toplar.
+
+## CI Pipeline
+
+- Tetikleyiciler: `push` (main) ve `pull_request`.
+- Runner: `ubuntu-latest`, Node.js `20.x`, pnpm cache etkin (`cache: pnpm`).
+- Adımlar: checkout → setup Node → setup pnpm → `pnpm install` → `pnpm lint` → `pnpm typecheck` → `pnpm test` → `pnpm build`.
+- Tüm adımlar geçerse job yeşil; herhangi biri fail olursa kırmızı.
+- Opsiyonel: Coverage çıktısı artefakt olarak `coverage-report` adıyla yüklenir.
+- Merge kuralı: CI yeşil olmadan `main`’e merge etmeyin.
 - Sprint modu: Coverage yalnızca hedef dosyalar için ölçülür (`app/page.tsx`, `app/api/**`). Kapsam ilerledikçe `include` genişletilecektir.
 
 ### Setting Up the Demo Layout
