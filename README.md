@@ -50,6 +50,22 @@ Start the development server:
 npm run dev
 ```
 
+## Code Quality
+
+- `pnpm lint`: ESLint denetimi çalışır ve uyarıları 0'a zorlar (`--max-warnings=0`).
+- `pnpm format`: Prettier ile proje genelinde biçimlendirme uygular.
+- `pnpm typecheck`: TypeScript tip kontrolünü `--noEmit` ile çalıştırır.
+
+Notlar:
+
+- ESLint kural setleri: `next/core-web-vitals`, `react`, `import`, `jsx-a11y`, `tailwindcss`.
+- Tailwind sınıf sıralaması için `prettier-plugin-tailwindcss` etkindir.
+
+### A11y & HTML Pitfalls
+
+- Anchor nesting ihlalleri (ör. `<a>` içinde başka bir `<a>`) `ERROR` seviyesindedir (`jsx-a11y/anchor-is-valid`).
+- İlgili ihlaller `pnpm lint` sırasında kırmızı hata olarak raporlanır.
+
 ### Setting Up the Demo Layout
 
 Open `app/(protected)/layout.tsx` and change `Demo1Layout` to any demo, for example, `Demo5Layout` and you will switch entire app layout to the selected demo.
